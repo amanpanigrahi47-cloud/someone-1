@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> To </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f5f3f0;
+            --text-color: #333;
+            --primary-color: #8d8741; /* Muted Green */
+            --secondary-color: #659dbd; /* Soft Blue */
+            --accent-color: #DAA520; /* Gold */
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /*--- Header & Hero Section ---*/
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--bg-color);
+        }
+
+        .hero-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--accent-color);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            animation: fadeInScale 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin: 0.5rem 0;
+            color: var(--primary-color);
+            animation: fadeIn 2s ease-in-out 0.5s both;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            color: #555;
+            animation: slideInUp 1.5s ease-out 0.8s both;
+        }
+
+        /*--- Sections ---*/
+        .section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section:nth-of-type(odd) {
+             background-color: #faf8f5;
+        }
+
+        .section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
+
+        /*--- NEW: Gallery Section ---*/
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .caption {
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #555;
+            margin: 0;
+        }
+        
+        /*--- Our Journey Section ---*/
+        .journey-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 700px;
+            margin: auto;
+            text-align: left;
+        }
+
+        .journey-item {
+            background: var(--card-bg);
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .journey-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .journey-item h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        /*--- Reasons Why You're the Best ---*/
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .reason-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            text-align: center;
+            border-top: 5px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .reason-card:hover {
+            transform: scale(1.05);
+        }
+
+        .reason-card .icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .reason-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /*--- Final Note Section ---*/
+        .final-note {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /*--- Footer ---*/
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        footer p {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        /*--- Animations ---*/
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="https://i.ibb.co/C3F5zF3w/f64a2671-6a69-48ce-88c7-2d9a20026170.jpg" alt="A picture of my best friend,Anshu chasmish (sundari)" class="hero-image">
+        <h1>Happy birthday To My Best Friend,Anshu chasmish (sundari)</h1>
+        <p>A small website to celebrate the amazing person you are and the incredible friendship we share. So glad to have you in my life!</p>
+    </header>
+
+    <main>
+        <!-- Gallery of Our Best Moments Section -->
+        <section class="section" id="gallery">
+            <div class="container">
+                <h2>Gallery of Our Best Moments</h2>
+                <div class="gallery-grid">
+                    <!-- Image 1 -->
+                    <div class="gallery-item">
+                        <img src="https://i.ibb.co/ZzJw6ZVQ/1da311c3-df95-4691-852d-ba414e75e96a.jpg" alt="A fun memory with my best friend">
+                        <p class="caption">That time we couldn't stop laughing. A classic moment!</p>
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="gallery-item">
+                        <img src="https://i.ibb.co/KxQh55c7/08711994-853a-4931-9224-e5598abfe851.jpg" alt="An adventurous memory with my best friend">
+                        <p class="caption">The view was great, but the company was even better.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Journey Section -->
+        <section class="section" id="story">
+            <div class="container">
+                <h2>Our Unforgettable Journey</h2>
+                <div class="journey-grid">
+                    <!-- Journey Item 1 -->
+                    <div class="journey-item">
+                        <h3>The Beginning</h3>
+                        <p>Remember how we met? It feels like a lifetime ago, but I can still recall it like it was yesterday. It's crazy to think about how far we've come since that first "hello."</p>
+                    </div>
+                    <!-- Journey Item 2 -->
+                    <div class="journey-item">
+                        <h3>Our Greatest Adventure</h3>
+                        <p>Out of all our memories, that one small cafe brunch we took will always be my favorite. From the endless laughs to the unexpected detours, it perfectly captures the spirit of our friendship.</p>
+                    </div>
+                    <!-- Journey Item 3 -->
+                    <div class="journey-item">
+                        <h3>Always There</h3>
+                        <p>Through every high and low, you've been my constant. Thank you for being the person I can always count on, no matter what. It means the world to me.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reasons Why You're the Best Section -->
+        <section class="section" id="reasons">
+            <div class="container">
+                <h2>A Few Reasons You're Awesome</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <div class="icon">💖</div>
+                        <h3>Your Huge Heart</h3>
+                        <p>You have a way of making everyone feel loved and appreciated. Your kindness is a true gift.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="icon">😂</div>
+                        <h3>Your Sense of Humor</h3>
+                        <p>No one makes me laugh like you do. Thanks for all the moments of pure joy and hilarity.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="icon">🤝</div>
+                        <h3>Your Unwavering Support</h3>
+                        <p>No matter what, you've always had my back. I'm so grateful for your loyalty and support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Note Section -->
+        <section class="section" id="final-note">
+            <div class="container">
+                <h2>A Final Note</h2>
+                <p class="final-note">
+                    Words can't really capture how much your friendship means to me. You're more than just a friend; you're family. Thank you for everything. Here's to many more years of adventures, inside jokes, and being there for each other.
+                    <br><br>
+                    With all my love,
+                    <br>
+                    <strong>AMAN</strong>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>A tiny website built with a whole lot of love.</p>
+    </footer>
+
+</body>
+</html>
